@@ -26,9 +26,13 @@ module GenerateTextOptions =
             "-y"
             "-f lavfi"
             $"-i color=c=black:s={size}:d={options.DurationSeconds}"
-            $"-vf \"drawtext=text='{escapeText options.Text}':fontcolor=white:fontsize=48:x=(w-text_w)/2:y=(h-text_h)/2\""
+            "-f lavfi"
+            "-i anullsrc=channel_layout=stereo:sample_rate=44100"
+            $"-vf \"settb=1/15360,fps=30,drawtext=text='{escapeText options.Text}':fontcolor=white:fontsize=48:x=(w-text_w)/2:y=(h-text_h)/2\""
             "-c:v libx264"
             "-pix_fmt yuv420p"
+            "-c:a aac -b:a 128k"
+            "-shortest"
         ]
 
 let generateText (options: GenerateTextOptions) (output: string) =
@@ -52,9 +56,7 @@ module MergeCrossFadeOptions =
     let toArgs (options: MergeCrossFadeOptions) =
         let filter =
             String.concat ";" [
-                "[0:v]format=yuv420p,setsar=1,fps=30[v0]"
-                "[1:v]format=yuv420p,setsar=1,fps=30[v1]"
-                $"[v0][v1]xfade=transition=fade:duration={options.Duration}:offset={options.Offset}[vid]"
+                $"[0:v][1:v]xfade=transition=fade:duration={options.Duration}:offset={options.Offset}[vid]"
                 "[0:a][1:a]acrossfade=duration=2[aud]"
             ]
         [
@@ -62,11 +64,7 @@ module MergeCrossFadeOptions =
             $"-filter_complex \"{filter}\""
             "-map \"[vid]\""
             "-map \"[aud]\""
-            "-c:v libx264"
-            "-crf 23"
-            "-preset medium"
         ]
-
 
 let mergeCrossFade (input1: string) (input2: string) (options: MergeCrossFadeOptions) (output: string) =
     let args =
@@ -83,27 +81,40 @@ let run (exitCode, stdout, stderr) =
     eprintfn "%s" stderr
     exit exitCode
 
-// do
-//     "white_on_black1.mp4"
-//     |> generateText {
-//         Size = 1368, 768
-//         DurationSeconds = 5
-//         Text = "Hello, мир!"
-//     }
-//     |> run
-//     "white_on_black2.mp4"
-//     |> generateText {
-//         Size = 1368, 768
-//         DurationSeconds = 5
-//         Text = "It's so easy"
-//     }
-//     |> run
+let toResult (exitCode, stdout, stderr) =
+    match exitCode with
+    | 0 -> Ok ()
+    | _ -> Error (stdout, stderr)
 
-do
-    "result.mp4"
-    |> mergeCrossFade "white_on_black1.mp4" "/home/user/Videos/simplescreenrecorder-2026-02-28_04.37.05.mp4" {
-    // |> mergeCrossFade "white_on_black1.mp4" "white_on_black2.mp4" {
-        Duration = 2.5f
-        Offset = 2.5f
+let exit =
+    function
+    | Ok () -> 0
+    | Error (stdout, stderr) ->
+        printfn "%s" stdout
+        eprintfn "%s" stderr
+        1
+    >> exit
+
+let createVideoWithHeader text outputVideoPath inputVideoPath =
+    let headerVideoPath = "headerVideoPath.mp4"
+    headerVideoPath
+    |> generateText {
+        Size = 1368, 768
+        DurationSeconds = 5
+        Text = text
     }
-    |> run
+    |> toResult
+    |> Result.bind (fun () ->
+        outputVideoPath
+        |> mergeCrossFade headerVideoPath inputVideoPath {
+            Duration = 2.5f
+            Offset = 2.5f
+        }
+        |> toResult
+    )
+    |> exit
+
+"/home/user/Videos/simplescreenrecorder-2026-02-28_04.37.05.mp4"
+|> createVideoWithHeader
+    "Философ VS айтишник"
+    "result.mp4"
