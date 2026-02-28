@@ -5,6 +5,7 @@
 	// List of extensions which should be recommended for users of this workspace.
 	"recommendations": [
 		"EditorConfig.EditorConfig",
+    "Ionide.Ionide-fsharp", "muhammad-sammy.csharp", "ms-dotnettools.vscode-dotnet-runtime",
 	],
 	// List of extensions recommended by VSCodium that should not be recommended for users of this workspace.
 	"unwantedRecommendations": [
