@@ -66,7 +66,7 @@ module MergeCrossFadeOptions =
             "-map \"[aud]\""
         ]
 
-let mergeCrossFade (input1: string) (input2: string) (options: MergeCrossFadeOptions) (output: string) =
+let mergeCrossFade (options: MergeCrossFadeOptions) (output: string) (input1: string, input2: string) =
     let args =
         String.concat " " [
             $"-i {input1}"
@@ -105,11 +105,13 @@ let createVideoWithHeader text outputVideoPath inputVideoPath =
     }
     |> toResult
     |> Result.bind (fun () ->
-        outputVideoPath
-        |> mergeCrossFade headerVideoPath inputVideoPath {
-            Duration = 2.5f
-            Offset = 2.5f
-        }
+        (headerVideoPath, inputVideoPath)
+        |> mergeCrossFade
+            {
+                Duration = 2.5f
+                Offset = 2.5f
+            }
+            outputVideoPath
         |> toResult
     )
     |> exit
