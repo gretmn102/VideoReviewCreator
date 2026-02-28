@@ -115,8 +115,3 @@ let createVideoWithHeader text outputVideoPath inputVideoPath =
         |> toResult
     )
     |> exit
-
-"/home/user/Videos/simplescreenrecorder-2026-02-28_04.37.05.mp4"
-|> createVideoWithHeader
-    "Философ VS айтишник"
-    "result.mp4"
