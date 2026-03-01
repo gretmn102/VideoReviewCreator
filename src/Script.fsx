@@ -31,9 +31,6 @@ module GenerateTextOptions =
             "-f lavfi"
             "-i anullsrc=channel_layout=stereo:sample_rate=44100"
             $"-vf \"settb={options.Timebase},fps={options.Fps},drawtext=text='{escapeText options.Text}':fontcolor=white:fontsize=48:x=(w-text_w)/2:y=(h-text_h)/2\""
-            "-c:v libx264"
-            "-pix_fmt yuv420p"
-            "-c:a aac -b:a 128k"
             "-shortest"
         ]
 
