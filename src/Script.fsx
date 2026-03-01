@@ -2,6 +2,18 @@
 #load @"../TimecodeMediaSplitter/src/ffmpegApi.fsx"
 open FfmpegApi
 
+[<RequireQualifiedAccess>]
+[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+module Bash =
+    let toDoubleQuote str =
+        let escape =
+            String.collect (function
+                | '"' -> "\\\""
+                | '\\' -> @"\\\\"
+                | c -> string c
+            )
+        $"\"{escape str}\""
+
 type GenerateTextOptions = {
     Size: int * int
     DurationSeconds: int
@@ -38,7 +50,7 @@ let generateText (options: GenerateTextOptions) (output: string) =
     let args =
         String.concat " " [
             yield! GenerateTextOptions.toArgs options
-            output
+            Bash.toDoubleQuote output
         ]
     FfMpeg.startProc args
 
@@ -68,10 +80,10 @@ module MergeCrossFadeOptions =
 let mergeCrossFade (options: MergeCrossFadeOptions) (output: string) (input1: string, input2: string) =
     let args =
         String.concat " " [
-            $"-i {input1}"
-            $"-i {input2}"
+            $"-i {Bash.toDoubleQuote input1}"
+            $"-i {Bash.toDoubleQuote input2}"
             yield! MergeCrossFadeOptions.toArgs options
-            output
+            Bash.toDoubleQuote output
         ]
     FfMpeg.startProc args
 
