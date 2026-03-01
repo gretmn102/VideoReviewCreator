@@ -6,6 +6,8 @@ type GenerateTextOptions = {
     Size: int * int
     DurationSeconds: int
     Text: string
+    Timebase: string
+    Fps: string
 }
 
 module GenerateTextOptions =
@@ -28,7 +30,7 @@ module GenerateTextOptions =
             $"-i color=c=black:s={size}:d={options.DurationSeconds}"
             "-f lavfi"
             "-i anullsrc=channel_layout=stereo:sample_rate=44100"
-            $"-vf \"settb=1/15360,fps=30,drawtext=text='{escapeText options.Text}':fontcolor=white:fontsize=48:x=(w-text_w)/2:y=(h-text_h)/2\""
+            $"-vf \"settb={options.Timebase},fps={options.Fps},drawtext=text='{escapeText options.Text}':fontcolor=white:fontsize=48:x=(w-text_w)/2:y=(h-text_h)/2\""
             "-c:v libx264"
             "-pix_fmt yuv420p"
             "-c:a aac -b:a 128k"
@@ -102,6 +104,8 @@ let createVideoWithHeader text outputVideoPath inputVideoPath =
         Size = 1368, 768
         DurationSeconds = 5
         Text = text
+        Timebase = "1/15360"
+        Fps = "30"
     }
     |> toResult
     |> Result.bind (fun () ->
