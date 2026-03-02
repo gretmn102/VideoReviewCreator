@@ -74,6 +74,7 @@ module MergeCrossFadeOptions =
             "-y"
             $"-filter_complex \"{filter}\""
             "-map \"[vid]\""
+            "-pix_fmt yuv420p"
             "-map \"[aud]\""
         ]
 
