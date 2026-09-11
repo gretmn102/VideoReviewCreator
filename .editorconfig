@@ -18,3 +18,9 @@ indent_size = 2
 
 [*.md]
 indent_size = 2
+
+[paket.dependencies]
+indent_size = 2
+
+[paket.references]
+indent_size = 2
