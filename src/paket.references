@@ -3,3 +3,4 @@ group Cli
   FSharpMyExt
   Ffmpeg.FSharp
   Argu
+  VideoReviewCreator.Core

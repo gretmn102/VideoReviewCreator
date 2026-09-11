@@ -42,3 +42,7 @@ NUGET
       Newtonsoft.Json.Bson (>= 1.0.2)
       System.Drawing.Common (>= 4.7)
       TextCopy (>= 4.2)
+    VideoReviewCreator.Core (0.1.0)
+      Ffmpeg.FSharp (>= 0.1)
+      FSharp.Core (>= 6.0)
+      FSharpMyExt (>= 2.0.0-prerelease.11)

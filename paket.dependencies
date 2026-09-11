@@ -9,3 +9,4 @@ group Cli
   nuget FSharpMyExt >= 2.0.0-prerelease.11 lowest_matching: true
   nuget Argu >= 6.2.5 lowest_matching: true
   nuget Ffmpeg.FSharp >= 0.1 lowest_matching: true
+  nuget VideoReviewCreator.Core >= 0.1 lowest_matching: true
