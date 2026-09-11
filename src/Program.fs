@@ -1,6 +1,5 @@
-#!/usr/bin/env -S dotnet fsi
-#load @"../TimecodeMediaSplitter/src/ffmpegApi.fsx"
-open FfmpegApi
+﻿module VideoReviewCreator.Cli
+open Ffmpeg.FSharp
 
 [<RequireQualifiedAccess>]
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]

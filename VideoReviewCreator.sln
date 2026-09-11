@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Cli", "src\Cli.fsproj", "{ED0B8E66-A232-413F-BF0C-3A61BFEF93B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED0B8E66-A232-413F-BF0C-3A61BFEF93B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED0B8E66-A232-413F-BF0C-3A61BFEF93B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED0B8E66-A232-413F-BF0C-3A61BFEF93B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED0B8E66-A232-413F-BF0C-3A61BFEF93B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,5 @@
+bin
+obj
+/paket-files
+Directory.Build.props
+/deploy

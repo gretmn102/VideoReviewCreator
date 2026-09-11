@@ -1,0 +1,44 @@
+
+
+GROUP Cli
+STORAGE: NONE
+STRATEGY: MIN
+RESTRICTION: == net6.0
+NUGET
+  remote: https://api.nuget.org/v3/index.json
+    Argu (6.2.5)
+      FSharp.Core (>= 6.0)
+      System.Configuration.ConfigurationManager (>= 4.4)
+    dotenv.net (3.1.2)
+    FParsec (1.1.1)
+      FSharp.Core (>= 4.3.4)
+    FSharp.Core (6.0)
+    HtmlAgilityPack (1.11.24)
+    Microsoft.Extensions.DependencyInjection.Abstractions (3.1.4)
+    Microsoft.NETCore.Platforms (3.1)
+    Microsoft.Win32.SystemEvents (4.7)
+      Microsoft.NETCore.Platforms (>= 3.1)
+    Newtonsoft.Json (12.0.3)
+    Newtonsoft.Json.Bson (1.0.2)
+      Newtonsoft.Json (>= 12.0.1)
+    System.Configuration.ConfigurationManager (4.4)
+      System.Security.Cryptography.ProtectedData (>= 4.4)
+    System.Drawing.Common (4.7)
+      Microsoft.NETCore.Platforms (>= 3.1)
+      Microsoft.Win32.SystemEvents (>= 4.7)
+    System.Security.Cryptography.ProtectedData (4.4)
+    TextCopy (4.2)
+      Microsoft.Extensions.DependencyInjection.Abstractions (>= 3.1.4)
+  remote: https://gitlab.com/api/v4/projects/28574921/packages/nuget/index.json
+    Ffmpeg.FSharp (0.1.0)
+      FSharp.Core (>= 6.0)
+      FSharpMyExt (>= 2.0.0-prerelease.11)
+    FSharpMyExt (2.0.0-prerelease.11)
+      dotenv.net (>= 3.1.2)
+      FParsec (>= 1.1.1)
+      FSharp.Core (>= 4.7.2)
+      HtmlAgilityPack (>= 1.11.24)
+      Newtonsoft.Json (>= 12.0.3)
+      Newtonsoft.Json.Bson (>= 1.0.2)
+      System.Drawing.Common (>= 4.7)
+      TextCopy (>= 4.2)
