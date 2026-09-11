@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <AssemblyName>VideoReviewCreator</AssemblyName>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <PackAsTool>true</PackAsTool>
