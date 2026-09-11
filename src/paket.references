@@ -1,4 +1,5 @@
 group Cli
   FSharp.Core
   FSharpMyExt
+  Ffmpeg.FSharp
   Argu
