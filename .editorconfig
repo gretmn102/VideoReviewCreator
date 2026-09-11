@@ -13,5 +13,8 @@ insert_final_newline = true
 [*.{fs,fsx}]
 indent_size = 4
 
+[*.fsproj]
+indent_size = 2
+
 [*.md]
 indent_size = 2
