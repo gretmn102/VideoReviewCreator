@@ -1,0 +1,4 @@
+group Cli
+  FSharp.Core
+  FSharpMyExt
+  Argu
